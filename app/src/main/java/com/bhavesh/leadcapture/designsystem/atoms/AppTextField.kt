@@ -32,6 +32,8 @@ public fun AppTextField(
     errorText: String? = null,
     onBlur: () -> Unit = {},
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    singleLine: Boolean = true,
+    minLines: Int = 1,
     modifier: Modifier = Modifier
 ) {
     var isFocused by remember { mutableStateOf(false) }
@@ -79,7 +81,8 @@ public fun AppTextField(
             BasicTextField(
                 value = value,
                 onValueChange = onValueChange,
-                singleLine = true,
+                singleLine = singleLine,
+                minLines = minLines,
                 textStyle = AppTheme.typography.body.copy(color = AppTheme.colors.onSurface),
                 cursorBrush = SolidColor(AppTheme.colors.primary),
                 keyboardOptions = keyboardOptions,

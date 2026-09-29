@@ -9,6 +9,7 @@ This project implements a config-driven lead capture form using Kotlin and Jetpa
    ```bash
    ./gradlew :app:assembleDebug
    ```
+   **To Run:** You can run the app directly from Android Studio onto a physical device, a standard Phone emulator (Compact layout), or a Tablet/Resizable emulator (Expanded layout) to see the responsive layout adapt automatically.
 4. Run the unit tests to verify form validation logic:
    ```bash
    ./gradlew :app:testDebugUnitTest
@@ -24,6 +25,9 @@ Strict layering constraints were enforced during development.
 * `lead/validation/`: Contains the pure Kotlin validation logic (`FormValidator`). No Android or Compose imports are present here.
 * `lead/state/`: Contains the `LeadViewModel` which manages form values, errors, and validation state agnostically via `StateFlow`.
 * `lead/ui/`: Contains the screen-level compose UI (`LeadScreen`) that ties the ViewModel and Molecules together.
+
+**Compact and Expanded Layouts:**
+The logic that owns and switches between the compact (1-column) and expanded (2-column) layouts lives entirely in `designsystem/form/molecules/FormLayout.kt`. It uses `BoxWithConstraints` to dynamically read the available width and compares it against `TWO_COLUMN_MIN_WIDTH` (defined in `designsystem/tokens/Breakpoints.kt`).
 
 ## How to Add a Field
 Adding a new field is designed to be trivial. You **do not** need to write a new composable.

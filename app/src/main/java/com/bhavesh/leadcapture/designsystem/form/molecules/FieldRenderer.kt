@@ -58,6 +58,20 @@ public fun FieldRenderer(
                 modifier = modifier
             )
         }
+        FieldType.TEXTAREA -> {
+            AppTextField(
+                value = (value as? FieldValue.Text)?.value.orEmpty(),
+                onValueChange = { onValueChange(FieldValue.Text(it)) },
+                label = field.label,
+                placeholder = field.placeholder,
+                errorText = error,
+                onBlur = onBlur,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+                singleLine = false,
+                minLines = 3,
+                modifier = modifier
+            )
+        }
         FieldType.SELECT -> {
             val selectOptions = field.options.map { SelectOption(it.label, it.value) }
             val selectedLabel = selectOptions.find { it.value == (value as? FieldValue.Selected)?.value }?.label

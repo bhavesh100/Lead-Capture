@@ -5,5 +5,6 @@ public enum class FieldType {
     EMAIL,
     PHONE,
     SELECT,
-    CHECKBOX
+    CHECKBOX,
+    TEXTAREA
 }

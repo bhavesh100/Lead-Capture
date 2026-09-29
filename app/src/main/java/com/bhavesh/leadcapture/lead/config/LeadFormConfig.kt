@@ -10,57 +10,59 @@ import com.bhavesh.leadcapture.designsystem.form.model.VisibleWhen
 public object LeadFormConfig {
     public val defaultConfig: List<FieldConfig> = listOf(
         FieldConfig(
-            name = "firstName",
-            label = "First Name",
+            name = "fullName",
+            label = "Full name",
             type = FieldType.TEXT,
             span = FieldSpan.HALF,
-            rules = listOf(Rule.Required("First name is required"))
-        ),
-        FieldConfig(
-            name = "lastName",
-            label = "Last Name",
-            type = FieldType.TEXT,
-            span = FieldSpan.HALF,
-            rules = listOf(Rule.Required("Last name is required"))
+            rules = listOf(Rule.Required("Full name is required"))
         ),
         FieldConfig(
             name = "email",
-            label = "Email Address",
+            label = "Email",
             type = FieldType.EMAIL,
+            span = FieldSpan.HALF,
             rules = listOf(
                 Rule.Required("Email is required"),
                 Rule.Email("Please enter a valid email")
             )
         ),
         FieldConfig(
-            name = "phone",
-            label = "Phone Number",
-            type = FieldType.PHONE,
-            rules = listOf(Rule.ExactDigits(10, "Phone number must be exactly 10 digits"))
-        ),
-        FieldConfig(
-            name = "role",
-            label = "Role",
+            name = "leadType",
+            label = "Lead type",
             type = FieldType.SELECT,
             options = listOf(
-                Option("Developer", "DEV"),
-                Option("Designer", "DESIGN"),
-                Option("Manager", "MGR")
+                Option("Individual", "INDIVIDUAL"),
+                Option("Company", "COMPANY")
             ),
-            rules = listOf(Rule.Required("Please select a role"))
+            rules = listOf(Rule.Required("Please select a lead type"))
         ),
         FieldConfig(
-            name = "company",
-            label = "Company Name",
+            name = "companyName",
+            label = "Company name",
             type = FieldType.TEXT,
-            visibleWhen = VisibleWhen("role", "MGR"),
-            rules = listOf(Rule.Required("Company name is required for Managers"))
+            visibleWhen = VisibleWhen("leadType", "COMPANY"),
+            rules = listOf(Rule.Required("Company name is required"))
         ),
         FieldConfig(
-            name = "terms",
-            label = "I agree to the terms and conditions",
+            name = "phone",
+            label = "Phone",
+            type = FieldType.TEXT,
+            rules = listOf(
+                Rule.Required("Phone number is required"),
+                Rule.ExactDigits(10, "Phone must be exactly 10 digits")
+            )
+        ),
+        FieldConfig(
+            name = "notes",
+            label = "Notes",
+            type = FieldType.TEXTAREA,
+            rules = listOf(Rule.MaxLength(200, "Notes cannot exceed 200 characters"))
+        ),
+        FieldConfig(
+            name = "consent",
+            label = "Consent",
             type = FieldType.CHECKBOX,
-            rules = listOf(Rule.Required("You must agree to the terms"))
+            rules = listOf(Rule.Required("You must provide consent"))
         )
     )
 }
